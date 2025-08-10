@@ -28,7 +28,7 @@
             <a href="{$WEB_ROOT}/index.php?rp=/store" class="navigation-link" id="nav-products">Products</a>
             <a href="{$WEB_ROOT}/clientarea.php?action=services" id="nav-services" class="navigation-link">Services</a>
             <a href="{$WEB_ROOT}/clientarea.php" class="navigation-link" id="nav-client">Client area</a>
-            <a href="{$WEB_ROOT}/knowledgebase" class="navigation-link" id="nav-knowledge">knowledgebase</a>
+            <a href="{$WEB_ROOT}/index.php?rp=/knowledgebase" class="navigation-link" id="nav-knowledge">knowledgebase</a>
             <a href="{$WEB_ROOT}/about" class="navigation-link" id="nav-about">About Us</a>
         </div>
         {if $loggedin}

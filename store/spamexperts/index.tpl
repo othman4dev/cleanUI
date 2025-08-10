@@ -115,7 +115,7 @@
                 Powered by <img src="{$WEB_ROOT}/assets/img/marketconnect/spamexperts/logo_white.png">
             </div>
         </div>
-    </div>
+    </div>  
 
     <div class="content-block text20 text-center">
         <div class="container">
