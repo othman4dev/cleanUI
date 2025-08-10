@@ -24,12 +24,12 @@
             <a href="{$WEB_ROOT}/index.php" class="navbar-brand"><h3 class="logo-font">HOLLANDNODE</h3></a>
         {/if}
         <div class="navigation-bar">
-            <a href="{$WEB_ROOT}/index.php" class="navigation-link navigation-active">Home</a>
-            <a href="{$WEB_ROOT}/clientarea.php?action=services" class="navigation-link">Services</a>
-            <a href="{$WEB_ROOT}/clientarea.php" class="navigation-link">Client area</a>
-            <a href="{$WEB_ROOT}/knowledgebase" class="navigation-link">knowledgebase</a>
-            <a href="{$WEB_ROOT}/privacy" class="navigation-link">Privacy</a>
-            <a href="{$WEB_ROOT}/about" class="navigation-link">About Us</a>
+            <a href="{$WEB_ROOT}/index.php" class="navigation-link navigation-active" id="nav-home">Home</a>
+            <a href="{$WEB_ROOT}/index.php?rp=/store" class="navigation-link" id="nav-products">Products</a>
+            <a href="{$WEB_ROOT}/clientarea.php?action=services" id="nav-services" class="navigation-link">Services</a>
+            <a href="{$WEB_ROOT}/clientarea.php" class="navigation-link" id="nav-client">Client area</a>
+            <a href="{$WEB_ROOT}/knowledgebase" class="navigation-link" id="nav-knowledge">knowledgebase</a>
+            <a href="{$WEB_ROOT}/about" class="navigation-link" id="nav-about">About Us</a>
         </div>
         {if $loggedin}
             <div class="user-actions">
@@ -66,6 +66,37 @@
                     </a>
                 </div>
             </div>
+            <div class="user-actions-mobile">
+                <div class="notification-dropdown">
+                    <a href="#" data-toggle="popover" id="accountNotifications" data-placement="bottom">
+                        <i class="bi bi-bell"></i>
+                        {if count($clientAlerts) > 0}
+                            <span class="label label-info">{lang key='notificationsnew'}</span>
+                        {/if}
+                    </a>
+                    <div id="accountNotificationsContent" class="hidden">
+                        <ul class="client-alerts">
+                        {foreach $clientAlerts as $alert}
+                            <li>
+                                <a href="{$alert->getLink()}">
+                                    <i class="bi bi-{if $alert->getSeverity() == 'danger'}exclamation-circle{elseif $alert->getSeverity() == 'warning'}exclamation-triangle{elseif $alert->getSeverity() == 'info'}info-circle{else}check-circle{/if}"></i>
+                                    <div class="message">{$alert->getMessage()}</div>
+                                </a>
+                            </li>
+                        {foreachelse}
+                            <li class="none">
+                                {$LANG.notificationsnone}
+                            </li>
+                        {/foreach}
+                        </ul>
+                    </div>
+                </div>
+                <div class="logout-action">
+                    <a href="{$WEB_ROOT}/logout.php" class="btn logout-btn">
+                        <i class="bi bi-box-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
         {else}
             <div class="sign-ins">
                 <button class="sign-button"><i class="bi bi-person-up"></i>Sign In</button>
@@ -76,29 +107,6 @@
     </div>
 </section>
 
-<section id="main-menu">
-    <nav id="nav" class="navbar navbar-default navbar-main" role="navigation">
-        <div class="container container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-nav">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="primary-nav">
-
-                
-
-            </div><!-- /.navbar-collapse -->
-        </div>
-    </nav>
-
-</section>
 {if $templatefile == 'homepage'}
 <div id="top-content" class="container-fluid slide-holder">
         <div class="container container">
@@ -276,7 +284,7 @@
         </div>
     </div>
     <div class="divider-150"></div>
-    <div class="section4">
+    <div class="section4" id="products">
         <h3 class="pricing">Pricing</h3>
         <h1 class="pricing-sub">Simple Transparent Pricing</h1>
         <p class="pricing-desc">Choose the plan that best suits your business needs.</p>
@@ -757,4 +765,26 @@
             });
         }
     });
+
+    let url = window.location.href;
+    console.log(url);
+    console.log(url.includes('services'));
+    document.querySelectorAll('.navigation-active').forEach(item => {
+        item.classList.remove('navigation-active'); 
+    });
+    if (url.includes('services')) {
+        document.querySelector('#nav-services').classList.add('navigation-active');
+    } else if (url.includes('clientarea')) {
+        document.querySelector('#nav-client').classList.add('navigation-active');
+    } else if (url.includes('knowledgebase')) {
+        document.querySelector('#nav-knowledge').classList.add('navigation-active');
+    } else if (url.includes('products')) {
+        document.querySelector('#nav-blog').classList.add('navigation-active');
+    } else if (url.includes('cart')) {
+        document.querySelector('#nav-cart').classList.add('navigation-active');
+    } else if (url.includes('clientarea')) {
+        document.querySelector('#nav-clientarea').classList.add('navigation-active');
+    } else {
+        document.querySelector('#nav-home').classList.add('navigation-active');
+    }
 </script>

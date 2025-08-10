@@ -1,8 +1,8 @@
 # Hustbee Theme for WHMCS Configuration File
 
-name: "Hustbee Theme for WHMCS"
-description: "Hustbee - Html5 WHMCS Theme"
-author: "Brandio"
+name: "HOLLANDNODE Theme for WHMCS"
+description: "HOLLANDNODE - Html5 WHMCS Theme"
+author: "Othman4dev"
 properties:
   serverSidePagination: false # Defines client side will handle pagination
 

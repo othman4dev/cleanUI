@@ -31,9 +31,15 @@
         <div class="register-card">
             <!-- Logo Section -->
             <div class="register-header">
-                <a class="register-logo" href="{$WEB_ROOT}/index.php">
-                    <img src="{$WEB_ROOT}/templates/{$template}/images/logo.svg" alt="{$companyname}">
-                </a>
+                {if $assetLogoPath}
+                    <a href="{$WEB_ROOT}/index.php" class="login-logo">
+                        <img src="{$assetLogoPath}" alt="{$companyname}" />
+                    </a>
+                {else}
+                    <div class="login-logo">
+                        <h3 class="logo-font">HOLLANDNODE</h3>
+                    </div>
+                {/if}
                 <h2 class="register-title">Create Account</h2>
                 <p class="register-subtitle">Join us today and get started</p>
             </div>
